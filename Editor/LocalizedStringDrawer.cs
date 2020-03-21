@@ -74,7 +74,7 @@ namespace MM
                     position.x += position.width + 2;
                     position.width = position.height;
 
-                    Texture _searchIcon = ImageHelperMethodes.LoadPngEditor("Assets/____MM/Libraries/LocalizationSystem/Resources/SearchIcon.png");
+                    Texture _searchIcon = ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/SearchIcon.png");
                     GUIContent _searchContent = new GUIContent(_searchIcon);
 
                     if (GUI.Button(position, _searchContent))
@@ -87,7 +87,7 @@ namespace MM
 
                     position.x += position.width + 2;
 
-                    Texture _storeIcon = ImageHelperMethodes.LoadPngEditor("Assets/____MM/Libraries/LocalizationSystem/Resources/EditSearchIcon.png");
+                    Texture _storeIcon = ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/EditSearchIcon.png");
                     GUIContent _storeContent = new GUIContent(_storeIcon);
 
                     if (GUI.Button(position, _storeContent))

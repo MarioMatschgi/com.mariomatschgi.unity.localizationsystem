@@ -161,7 +161,7 @@ namespace MM
                              * Delete Button & Key TextField
                              */
 
-                            GUIContent _deleteButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Assets/____MM/Libraries/LocalizationSystem/Resources/CrossIcon.png"));
+                            GUIContent _deleteButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/CrossIcon.png"));
                             if (GUILayout.Button(_deleteButtonContent, GUILayout.Width(deleteButtonWidth), GUILayout.Height(deleteButtonHeight)))
                                 if (EditorUtility.DisplayDialog("Remove Key " + element.Key + "?", "This will remove the element from localization, are you sure?", "Ok", "Cancel"))
                                 {
@@ -186,7 +186,7 @@ namespace MM
                             // Only show the set Button if a property is referenced
                             if (useProperty)
                             {
-                                GUIContent _setButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Assets/____MM/Libraries/LocalizationSystem/Resources/ArrowRightIcon.png"));
+                                GUIContent _setButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/ArrowRightIcon.png"));
                                 if (GUILayout.Button(_setButtonContent, GUILayout.Width(setButtonWidth), GUILayout.Height(setButtonHeight)))
                                 {
                                     LocalizedString _propertyLocalizedString = (LocalizedString)property.GetValue();
@@ -205,7 +205,7 @@ namespace MM
                              * Edit Button
                              */
 
-                            GUIContent _editButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Assets/____MM/Libraries/LocalizationSystem/Resources/EditSearchIcon.png"));
+                            GUIContent _editButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/EditSearchIcon.png"));
                             if (GUILayout.Button(_editButtonContent, GUILayout.Width(editButtonWidth), GUILayout.Height(editButtonHeight)))
                             {
                                 TextLocalizerEditWindow.Open(new LocalizedString(element.Key, element.Value));

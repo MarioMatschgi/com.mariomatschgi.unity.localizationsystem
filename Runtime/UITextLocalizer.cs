@@ -10,6 +10,7 @@ namespace MM
         namespace LocalizationSystem
         {
             [RequireComponent(typeof(TMP_Text))]
+            [AddComponentMenu("MM Localization System/UITextLocalizer")]
             public class UITextLocalizer : MonoBehaviour
             {
                 // Public

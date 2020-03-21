@@ -214,7 +214,7 @@ namespace MM
                     EditorGUILayout.BeginHorizontal(boxStyle);
                     EditorGUILayout.LabelField("Localizing language:", EditorStyles.boldLabel, GUILayout.Width(labelWidth), GUILayout.Height(labelHeight));
 
-                    GUIContent _nextLangButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Assets/____MM/Libraries/LocalizationSystem/Resources/ArrowDownIcon.png"));
+                    GUIContent _nextLangButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/ArrowDownIcon.png"));
                     if (GUILayout.Button(_nextLangButtonContent, GUILayout.Width(nextLangButtonWidth), GUILayout.Height(nextLangButtonHeight)))
                     {
                         // Increase languageToLocalize idx and clamp
