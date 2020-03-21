@@ -1,0 +1,24 @@
+{
+	"name": "com.mariomatschgi.localizationsystem",
+	"version": "1.0.0",
+	"displayName": "MM LocalizationSystem",
+	"description": "Mario Elsnig's Localization system. Used to translate text to multiple languages. Easy In-Editor editing windows for searching, adding, removing and editing locaclized texts. Usage: 1. Import the package 2. Open the search window with the Menue-Button next to the Play-Button or via inspector next to a LocalizedString variable 3. Add/Remove/Edit your texts",
+	"unity": "2019.1",
+	"dependencies": {
+    	"com.mariomatschgi.unity.localizationsystem": "https://github.com/MarioMatschgi/com.mariomatschgi.unity.core.git"
+	},
+	"author": {
+		"name" : "Mario Elsnig",
+		"email" : "mariomatschgi@gmail.com",
+		"url" : "http://www.mcronia.tk/"
+	},
+	"keywords": [
+		"MM",
+		"Mario",
+		"Matschgi",
+		"Elsnig",
+		"Localization",
+		"System",
+		"Language"
+	]
+}
