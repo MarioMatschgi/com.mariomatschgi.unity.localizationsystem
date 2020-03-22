@@ -31,6 +31,9 @@ namespace MM
                 static float subLabelWidth = 100;
                 static float subLabelHeight = 20;
 
+                static float addButtonWidth = 21;
+                static float addButtonHeight = 21;
+
                 static float deleteButtonWidth = 20;
                 static float deleteButtonHeight = 20;
 
@@ -78,7 +81,7 @@ namespace MM
                 /// <summary>
                 /// Opens the TextLocalizerSearchWindow window for the SerializedProperty <paramref name="_property"/>
                 /// </summary>
-                public static void Open(ref SerializedProperty _property)
+                public static void Open(SerializedProperty _property)
                 {
                     // If a TextLocalizerSearchWindow is open, close it
                     if (window != null)
@@ -120,16 +123,39 @@ namespace MM
                     Dictionary<string, Dictionary<Language, string>> dictionary = LocalizationSystem.GetKeysLanguages();
 
 
+                    EditorGUILayout.BeginHorizontal("Box");
+                    EditorGUILayout.BeginVertical();
                     #region Search field
                     /*
                      * Search field
                      */
 
-                    EditorGUILayout.BeginHorizontal("Box");
-                    EditorGUILayout.LabelField("Search: ", EditorStyles.boldLabel, GUILayout.Width(labelWidth), GUILayout.Height(labelHeight));
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Search for entry: ", EditorStyles.boldLabel, GUILayout.Width(labelWidth), GUILayout.Height(labelHeight));
                     value = EditorGUILayout.TextField(value);
                     EditorGUILayout.EndHorizontal();
                     #endregion
+
+
+                    #region Add Button
+                    /*
+                     * Add Button
+                     */
+
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Add new entry: ", EditorStyles.boldLabel, GUILayout.Width(labelWidth), GUILayout.Height(labelHeight));
+
+                    GUIContent _addButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/PlusIcon.png"));
+                    if (GUILayout.Button(_addButtonContent, GUILayout.Width(addButtonWidth), GUILayout.Height(addButtonHeight)))
+                    {
+                        Debug.Log("ADD");
+                        TextLocalizerEditWindow.Open(new LocalizedString("", new Dictionary<Language, string>()));
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    #endregion
+                    EditorGUILayout.EndVertical();
+                    EditorGUILayout.EndHorizontal();
 
 
                     if (value == null)

@@ -32,6 +32,7 @@ namespace MM
                 void Start()
                 {
                     textToLocalize = GetComponent<TMP_Text>();
+                    Debug.Log("SSSS " + localizedString.key);
                     textToLocalize.text = localizedString.localizedValue;
                 }
 

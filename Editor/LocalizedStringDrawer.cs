@@ -15,11 +15,10 @@ namespace MM
     {
         namespace LocalizationSystem
         {
+
             [CustomPropertyDrawer(typeof(LocalizedString))]
             public class LocalizedStringDrawer : PropertyDrawer
             {
-                public int asd;
-
                 // Private
                 bool localizedValuesFoldout;
                 float height;
@@ -65,11 +64,12 @@ namespace MM
                     position.x += 15;
                     position.width -= 50;
 
-                    LocalizedString _localizedString = (LocalizedString)property.GetValue();
+
+                    SerializedProperty _key = property.FindPropertyRelative("m_key");
                     GUIStyle _localizedStringStyle = new GUIStyle("textfield");
                     _localizedStringStyle.fontSize = 13;
-                    _localizedString.key = EditorGUI.TextField(position, _localizedString.key, _localizedStringStyle);
-                    property.SetValue(_localizedString);
+                    _key.stringValue = EditorGUI.TextField(position, _key.stringValue, _localizedStringStyle);
+
 
                     position.x += position.width + 2;
                     position.width = position.height;
@@ -80,7 +80,7 @@ namespace MM
                     if (GUI.Button(position, _searchContent))
                     {
                         if (TextLocalizerSearchWindow.window == null)
-                            TextLocalizerSearchWindow.Open(ref property);
+                            TextLocalizerSearchWindow.Open(property);
                         else
                             TextLocalizerSearchWindow.window.Close();
                     }
@@ -100,8 +100,10 @@ namespace MM
 
                     if (localizedValuesFoldout)
                     {
+                        LocalizedString _localizedStringREADONLY = (LocalizedString)property.GetValue();
+
                         _valueRect.y += 7;
-                        _valueRect.height = GUI.skin.box.CalcHeight(new GUIContent(_localizedString.localizedValue), _valueRect.width);
+                        _valueRect.height = GUI.skin.box.CalcHeight(new GUIContent(_localizedStringREADONLY.localizedValue), _valueRect.width);
                         _valueRect.y += 21;
 
                         EditorGUILayout.BeginVertical();
@@ -110,7 +112,7 @@ namespace MM
                             EditorGUILayout.BeginHorizontal();
                             EditorGUI.LabelField(_valueRect, _lang.ToString() + ":", EditorStyles.boldLabel);
                             _valueRect.x += 100;
-                            EditorGUI.LabelField(_valueRect, _localizedString.localizedValues.ContainsKey(_lang) ? _localizedString.localizedValues[_lang] : "", EditorStyles.wordWrappedLabel);
+                            EditorGUI.LabelField(_valueRect, _localizedStringREADONLY.localizedValues.ContainsKey(_lang) ? _localizedStringREADONLY.localizedValues[_lang] : "", EditorStyles.wordWrappedLabel);
                             EditorGUILayout.EndHorizontal();
 
                             _valueRect.x -= 100;

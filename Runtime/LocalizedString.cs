@@ -9,10 +9,10 @@ namespace MM
         namespace LocalizationSystem
         {
             [System.Serializable]
-            public struct LocalizedString
+            public class LocalizedString
             {
                 // Private
-                string m_key;
+                public string m_key;
 
                 // Public
                 public string key
@@ -60,7 +60,7 @@ namespace MM
                 /// </summary>
                 /// <param name="_key"></param>
                 /// <param name="_localizedValues"></param>
-                public LocalizedString(string _key, Dictionary<Language, string> _localizedValues) : this()
+                public LocalizedString(string _key, Dictionary<Language, string> _localizedValues)// : this()
                 {
                     key = _key;
                     localizedValues = _localizedValues;
