@@ -56,6 +56,9 @@ namespace MM
 
                 public string defaultLocalizedValue = "Enter a text";
 
+                public string editExistingLS = "Edit existing localized string";
+                public string addNewLS = "Add new localized string";
+
 
                 // Private
                 Vector2 startMousePos;
@@ -267,7 +270,11 @@ namespace MM
                     GUILayout.FlexibleSpace();
                     GUIStyle _saveButtonStyle = new GUIStyle("button");
                     _saveButtonStyle.fontSize = 15;
-                    if (GUILayout.Button("Edit existing localized string", _saveButtonStyle, GUILayout.Width(saveButtonWidth), GUILayout.Height(saveButtonHeight)))
+                    string _saveButtonText = editExistingLS;
+                    if (originalLocalizedString.key.Equals(string.Empty))
+                        _saveButtonText = addNewLS;
+
+                    if (GUILayout.Button(_saveButtonText, _saveButtonStyle, GUILayout.Width(saveButtonWidth), GUILayout.Height(saveButtonHeight)))
                     {
                         for (int i = 0; i < Enum.GetValues(typeof(Language)).Length; i++)
                         {

@@ -16,9 +16,9 @@ namespace MM
             public class CSVLoader
             {
                 // Public
-                public bool logSuccessLoad = true;
-                public bool logSuccessCreate = true;
-                public bool logErrorLoad = true;
+                public bool logSuccessLoad = false;
+                public bool logSuccessCreate = false;
+                public bool logErrorLoad = false;
                 public string standardLanguageCsvText = "" +
                     "\"key\",\"en\",\"de\",\"\"\n" + 
                     "\"hello_world\",\"Hello World!\",\"Hallo Welt!\",";
@@ -134,8 +134,6 @@ namespace MM
 
                         LoadLanguageCsvFile();
                     }
-
-                    Debug.Log(System.IO.File.ReadAllText(System.IO.Path.Combine(Application.streamingAssetsPath, "data/lang/localizedLanguages.csv")));
                 }
 
                 #endregion

@@ -148,7 +148,6 @@ namespace MM
                     GUIContent _addButtonContent = new GUIContent(ImageHelperMethodes.LoadPngEditor("Packages/com.mariomatschgi.unity.localizationsystem/Resources/PlusIcon.png"));
                     if (GUILayout.Button(_addButtonContent, GUILayout.Width(addButtonWidth), GUILayout.Height(addButtonHeight)))
                     {
-                        Debug.Log("ADD");
                         TextLocalizerEditWindow.Open(new LocalizedString("", new Dictionary<Language, string>()));
                     }
                     EditorGUILayout.EndHorizontal();
