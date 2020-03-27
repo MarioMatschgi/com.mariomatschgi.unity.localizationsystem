@@ -115,20 +115,32 @@ namespace MM
                         if (LocalizationSystem.logErrorLoad)
                             Debug.LogError("Cannot load file \"" + _path + "\", creating a new file!");
 
-                        string _dirPath = _path.Replace(_path.Split('/')[_path.Split('/').Length - 1], "");
+                        // Save standard
+                        SaveLanguageCsvFile(standardLanguageCsvText);
 
-                        if (!Directory.Exists(_dirPath))
-                            Directory.CreateDirectory(_dirPath);
-
-                        File.WriteAllText(_path, standardLanguageCsvText);
-#if UNITY_EDITOR
-                        UnityEditor.AssetDatabase.Refresh();
-#endif
                         if (LocalizationSystem.logSuccessCreate)
                             Debug.Log("Successfully created localizedLanguages.csv...");
 
+                        // Load again
                         LoadLanguageCsvFile();
                     }
+                }
+
+                /// <summary>
+                /// Saves the language csv file
+                /// </summary>
+                public void SaveLanguageCsvFile(string _text)
+                {
+                    string _path = Path.Combine(Application.streamingAssetsPath, LocalizationSystem.languageCsvPath);
+                    string _dirPath = _path.Replace(_path.Split('/')[_path.Split('/').Length - 1], "");
+
+                    if (!Directory.Exists(_dirPath))
+                        Directory.CreateDirectory(_dirPath);
+
+                    File.WriteAllText(_path, _text);
+#if UNITY_EDITOR
+                    UnityEditor.AssetDatabase.Refresh();
+#endif
                 }
 
                 #endregion
@@ -171,7 +183,7 @@ namespace MM
                         }
 
                     LoadLanguageCsvFile();
-                    File.AppendAllText(Path.Combine(Application.streamingAssetsPath, LocalizationSystem.languageCsvPath), _str);
+                    SaveLanguageCsvFile(string.Join(lineSeperator.ToString(), languageCsvFile.text, _str));
 
                     UnityEditor.AssetDatabase.Refresh();
                 }
@@ -199,9 +211,7 @@ namespace MM
 
                     LoadLanguageCsvFile();
                     if (_idx > -1)
-                        File.WriteAllText(Path.Combine(Application.streamingAssetsPath, LocalizationSystem.languageCsvPath), string.Join(lineSeperator.ToString(), _lines.Where(w => w != _lines[_idx]).ToArray()));
-
-                    UnityEditor.AssetDatabase.Refresh();
+                        SaveLanguageCsvFile(string.Join(lineSeperator.ToString(), _lines.Where(w => w != _lines[_idx]).ToArray()));
                 }
 
                 /// <summary>

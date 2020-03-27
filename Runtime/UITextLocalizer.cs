@@ -11,6 +11,7 @@ namespace MM
         {
             [RequireComponent(typeof(TMP_Text))]
             [AddComponentMenu("MM Localization System/UITextLocalizer")]
+            [ExecuteAlways]
             public class UITextLocalizer : MonoBehaviour
             {
                 // Public
@@ -36,7 +37,9 @@ namespace MM
 
                 void Update()
                 {
-
+                    // If update in Editor is triggered and value has changed
+                    if (!Application.isPlaying && !localizedString.localizedValue.Equals(textToLocalize.text))
+                        UpdateText();
                 }
 
                 #endregion
