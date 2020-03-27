@@ -1,9 +1,9 @@
 {
     "name": "MarioMatschgi.Unity.Editor.LocalizationSystem",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:dde48cedb706e483eb2642536b12823a",
-        "GUID:cab555f814cf54e93a7805d07e34a9d9"
+        "GUID:cab555f814cf54e93a7805d07e34a9d9",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

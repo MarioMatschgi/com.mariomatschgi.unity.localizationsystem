@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using MM.Attributes;
 using MM.Extentions;
 using UnityEngine;
@@ -14,9 +15,25 @@ namespace MM
             public class LocalizationSystem
             {
                 // Public static
-                public static Language language = Language.English;
+                public static Language language
+                {
+                    get
+                    {
+                        return LoadCurrentLanguageFile();
+                    }
+                    set
+                    {
+                        SaveCurrentLanguageFile(value);
+                    }
+                }
+                public static bool logSuccessLoad = false;
+                public static bool logSuccessCreate = false;
+                public static bool logErrorLoad = false;
+
                 public static bool isInit;
                 public static CSVLoader csvLoader;
+                public static string languageCsvPath = "data/lang/localizedLanguages.csv";
+                public static string currentLanguagePath = "data/lang/currentLanguage.txt";
 
 
                 // Private static
@@ -178,6 +195,54 @@ namespace MM
                  *  Helper Methodes
                  * 
                  */
+
+                /// <summary>
+                /// Saves the current language to the file
+                /// </summary>
+                static Language LoadCurrentLanguageFile()
+                {
+                    string _path = Path.Combine(Application.streamingAssetsPath, currentLanguagePath);
+                    Language _language;
+
+                    int _idx = 0;
+                    if (File.Exists(_path) && int.TryParse(File.ReadAllText(_path), out _idx))
+                    {
+                        _language = (Language)_idx;
+
+                        if (logSuccessLoad)
+                            Debug.Log("Successfully loaded currentLanguage.txt...");
+                    }
+                    else
+                    {
+                        if (logErrorLoad)
+                            Debug.LogError("Cannot load file \"" + _path + "\", creating a new file!");
+
+                        SaveCurrentLanguageFile((Language)0);
+
+                        _language = LoadCurrentLanguageFile();
+                    }
+
+                    return _language;
+                }
+
+                /// <summary>
+                /// Loads the current language from the file
+                /// </summary>
+                static void SaveCurrentLanguageFile(Language _language)
+                {
+                    string _path = Path.Combine(Application.streamingAssetsPath, currentLanguagePath);
+                    string _dirPath = _path.Replace(_path.Split('/')[_path.Split('/').Length - 1], "");
+
+                    if (!Directory.Exists(_dirPath))
+                        Directory.CreateDirectory(_dirPath);
+
+                    File.WriteAllText(_path, ((int)_language).ToString());
+#if UNITY_EDITOR
+                    UnityEditor.AssetDatabase.Refresh();
+#endif
+                    if (logSuccessCreate)
+                        Debug.Log("Successfully created currentLanguage.txt...");
+                }
 
                 /// <summary>
                 /// Updates the Dictionaries

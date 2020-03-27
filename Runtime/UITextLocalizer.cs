@@ -31,9 +31,7 @@ namespace MM
 
                 void Start()
                 {
-                    textToLocalize = GetComponent<TMP_Text>();
-                    Debug.Log("SSSS " + localizedString.key);
-                    textToLocalize.text = localizedString.localizedValue;
+                    UpdateText();
                 }
 
                 void Update()
@@ -51,6 +49,14 @@ namespace MM
                  *
                  *  
                  */
+
+                public void UpdateText()
+                {
+                    if (textToLocalize == null)
+                        textToLocalize = GetComponent<TMP_Text>();
+
+                    textToLocalize.text = localizedString.localizedValue;
+                }
 
                 #endregion
 

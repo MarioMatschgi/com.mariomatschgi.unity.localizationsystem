@@ -16,15 +16,10 @@ namespace MM
             public class CSVLoader
             {
                 // Public
-                public bool logSuccessLoad = false;
-                public bool logSuccessCreate = false;
-                public bool logErrorLoad = false;
                 public string standardLanguageCsvText = "" +
                     "\"key\",\"en\",\"de\",\"\"\n" + 
                     "\"hello_world\",\"Hello World!\",\"Hallo Welt!\",";
 
-                // Private
-                string languageCsvPath = "data/lang/localizedLanguages.csv";
 
                 TextAsset languageCsvFile;
                 char lineSeperator = '\n';
@@ -106,18 +101,18 @@ namespace MM
                 /// </summary>
                 public void LoadLanguageCsvFile()
                 {
-                    string _path = Path.Combine(Application.streamingAssetsPath, languageCsvPath);
+                    string _path = Path.Combine(Application.streamingAssetsPath, LocalizationSystem.languageCsvPath);
 
                     if (File.Exists(_path))
                     {
                         languageCsvFile = new TextAsset(File.ReadAllText(_path));
 
-                        if (logSuccessLoad)
+                        if (LocalizationSystem.logSuccessLoad)
                             Debug.Log("Successfully loaded localizedLanguages.csv...");
                     }
                     else
                     {
-                        if (logErrorLoad)
+                        if (LocalizationSystem.logErrorLoad)
                             Debug.LogError("Cannot load file \"" + _path + "\", creating a new file!");
 
                         string _dirPath = _path.Replace(_path.Split('/')[_path.Split('/').Length - 1], "");
@@ -129,8 +124,8 @@ namespace MM
 #if UNITY_EDITOR
                         UnityEditor.AssetDatabase.Refresh();
 #endif
-                        if (logSuccessCreate)
-                            Debug.Log("Successfully created currentLevelData file...");
+                        if (LocalizationSystem.logSuccessCreate)
+                            Debug.Log("Successfully created localizedLanguages.csv...");
 
                         LoadLanguageCsvFile();
                     }
@@ -176,7 +171,7 @@ namespace MM
                         }
 
                     LoadLanguageCsvFile();
-                    File.AppendAllText(Path.Combine(Application.streamingAssetsPath, languageCsvPath), _str);
+                    File.AppendAllText(Path.Combine(Application.streamingAssetsPath, LocalizationSystem.languageCsvPath), _str);
 
                     UnityEditor.AssetDatabase.Refresh();
                 }
@@ -204,7 +199,7 @@ namespace MM
 
                     LoadLanguageCsvFile();
                     if (_idx > -1)
-                        File.WriteAllText(Path.Combine(Application.streamingAssetsPath, languageCsvPath), string.Join(lineSeperator.ToString(), _lines.Where(w => w != _lines[_idx]).ToArray()));
+                        File.WriteAllText(Path.Combine(Application.streamingAssetsPath, LocalizationSystem.languageCsvPath), string.Join(lineSeperator.ToString(), _lines.Where(w => w != _lines[_idx]).ToArray()));
 
                     UnityEditor.AssetDatabase.Refresh();
                 }

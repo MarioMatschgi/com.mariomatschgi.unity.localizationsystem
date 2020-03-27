@@ -34,6 +34,9 @@ namespace MM
                 static float addButtonWidth = 21;
                 static float addButtonHeight = 21;
 
+                static float languageEnumWidth = 200;
+                static float languageEnumHeight = 21;
+
                 static float deleteButtonWidth = 20;
                 static float deleteButtonHeight = 20;
 
@@ -137,6 +140,7 @@ namespace MM
                     #endregion
 
 
+                    EditorGUILayout.BeginHorizontal();
                     #region Add Button
                     /*
                      * Add Button
@@ -153,6 +157,21 @@ namespace MM
                     EditorGUILayout.EndHorizontal();
 
                     #endregion
+
+
+                    #region Language Enum
+                    /*
+                     * Language Enum
+                     */
+
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Set language: ", EditorStyles.boldLabel, GUILayout.Width(labelWidth), GUILayout.Height(labelHeight));
+
+                    LocalizationSystem.language = (Language)EditorGUILayout.EnumPopup(LocalizationSystem.language, GUILayout.Width(languageEnumWidth), GUILayout.Height(languageEnumHeight));
+                    EditorGUILayout.EndHorizontal();
+
+                    #endregion
+                    EditorGUILayout.EndHorizontal();
                     EditorGUILayout.EndVertical();
                     EditorGUILayout.EndHorizontal();
 
