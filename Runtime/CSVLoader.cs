@@ -182,10 +182,8 @@ namespace MM
                             }
                         }
 
-                    LoadLanguageCsvFile();
                     SaveLanguageCsvFile(string.Join(lineSeperator.ToString(), languageCsvFile.text, _str));
-
-                    UnityEditor.AssetDatabase.Refresh();
+                    LoadLanguageCsvFile();
                 }
 
                 /// <summary>
@@ -209,9 +207,9 @@ namespace MM
                             break;
                         }
 
-                    LoadLanguageCsvFile();
                     if (_idx > -1)
                         SaveLanguageCsvFile(string.Join(lineSeperator.ToString(), _lines.Where(w => w != _lines[_idx]).ToArray()));
+                    LoadLanguageCsvFile();
                 }
 
                 /// <summary>

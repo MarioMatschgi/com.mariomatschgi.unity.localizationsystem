@@ -60,7 +60,7 @@ namespace MM
                 /// </summary>
                 /// <param name="_key"></param>
                 /// <param name="_localizedValues"></param>
-                public LocalizedString(string _key, Dictionary<Language, string> _localizedValues)// : this()
+                public LocalizedString(string _key, Dictionary<Language, string> _localizedValues)
                 {
                     key = _key;
                     localizedValues = _localizedValues;

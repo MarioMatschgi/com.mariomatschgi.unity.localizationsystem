@@ -192,6 +192,7 @@ namespace MM
                     Dictionary<string, Dictionary<Language, string>> _tmpDictionary = dictionary.ToDictionary(entry => entry.Key, entry => entry.Value);
                     bool _shouldSetTmpToReal = true;
 
+
                     foreach (KeyValuePair<string, Dictionary<Language, string>> element in dictionary)
                         if (element.Key.ToLower().Contains(value.ToLower()) || element.Value.Any(kvp => kvp.Value.ToLower().Contains(value.ToLower())))
                         {

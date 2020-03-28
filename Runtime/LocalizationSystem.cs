@@ -15,15 +15,21 @@ namespace MM
             public class LocalizationSystem
             {
                 // Public static
+                static Language m_language;
                 public static Language language
                 {
                     get
                     {
-                        return LoadCurrentLanguageFile();
+                        // Language gets loaded on init
+                        return m_language;
                     }
                     set
                     {
-                        SaveCurrentLanguageFile(value);
+                        // If language has changed, save
+                        if (m_language != value)
+                            SaveCurrentLanguageFile(value);
+
+                        m_language = value;
                     }
                 }
                 public static bool logSuccessLoad = false;
@@ -55,6 +61,7 @@ namespace MM
                 {
                     csvLoader = new CSVLoader();
 
+                    m_language = LoadCurrentLanguageFile();
                     UpdateDictionaries();
 
                     isInit = true;
@@ -79,7 +86,7 @@ namespace MM
                 public static Dictionary<Language, string> GetLanguagesValuesByKey(string _key)
                 {
                     if (_key == null)
-                        return null;
+                        return new Dictionary<Language, string>();
 
                     if (!isInit)
                         Init();
@@ -146,9 +153,7 @@ namespace MM
                     if (csvLoader == null)
                         csvLoader = new CSVLoader();
 
-                    csvLoader.LoadLanguageCsvFile();
                     csvLoader.Add(_localizedString);
-                    csvLoader.LoadLanguageCsvFile();
 
                     UpdateDictionaries();
                 }
@@ -161,9 +166,7 @@ namespace MM
                     if (csvLoader == null)
                         csvLoader = new CSVLoader();
 
-                    csvLoader.LoadLanguageCsvFile();
                     csvLoader.Remove(_key);
-                    csvLoader.LoadLanguageCsvFile();
 
                     UpdateDictionaries();
                 }
@@ -180,9 +183,7 @@ namespace MM
                     if (csvLoader == null)
                         csvLoader = new CSVLoader();
 
-                    csvLoader.LoadLanguageCsvFile();
                     csvLoader.Edit(_localizedString);
-                    csvLoader.LoadLanguageCsvFile();
 
                     UpdateDictionaries();
                 }

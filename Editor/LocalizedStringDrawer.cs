@@ -65,10 +65,17 @@ namespace MM
                     position.width -= 50;
 
 
-                    SerializedProperty _key = property.FindPropertyRelative("m_key");
+                    //SerializedProperty _key = property.FindPropertyRelative("m_key");
+                    //GUIStyle _localizedStringStyle = new GUIStyle("textfield");
+                    //_localizedStringStyle.fontSize = 13;
+                    //_key.stringValue = EditorGUI.TextField(position, _key.stringValue, _localizedStringStyle);
+
+                    LocalizedString _localizedString = (LocalizedString)property.GetValue();
                     GUIStyle _localizedStringStyle = new GUIStyle("textfield");
                     _localizedStringStyle.fontSize = 13;
-                    _key.stringValue = EditorGUI.TextField(position, _key.stringValue, _localizedStringStyle);
+                    _localizedString.key = EditorGUI.TextField(position, _localizedString.key, _localizedStringStyle);
+                    property.SetValue(_localizedString);
+
 
 
                     position.x += position.width + 2;
