@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 
 namespace MM.Systems.LocalizationSystem
 {
@@ -51,3 +53,5 @@ namespace MM.Systems.LocalizationSystem
         #endregion
     }
 }
+
+#endif

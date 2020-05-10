@@ -134,6 +134,7 @@ namespace MM.Systems.LocalizationSystem
             return keysLanguages.ContainsKey(_key);
         }
 
+#if UNITY_EDITOR
         /// <summary>
         /// Adds a LocalizedString <paramref name="_localizedString"/> to the CSVLoader
         /// </summary>
@@ -180,6 +181,7 @@ namespace MM.Systems.LocalizationSystem
 
             UpdateDictionaries();
         }
+#endif
 
         #endregion
 
